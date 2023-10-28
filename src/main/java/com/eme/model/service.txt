@@ -1,0 +1,78 @@
+package com.eme.model.service;
+
+import com.eme.model.entity.&ENTITY&;
+import com.eme.model.entity.enums.Status;
+import com.eme.model.service.impl.ServiceImpl;
+import jakarta.enterprise.context.*;
+import jakarta.inject.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
+
+import java.io.Serializable;
+import java.util.List;
+@RequestScoped
+@Named
+public class &ENTITY&Service implements ServiceImpl<&ENTITY&, Long>,Serializable {
+
+    @PersistenceContext(unitName = "eme")
+    private EntityManager entityManager;
+
+    //-------INSERT------------------------------------------------------
+    @Override
+    @Transactional
+    public &ENTITY& save(&ENTITY& &ENTITY_NAME&) throws Exception {
+        entityManager.persist(&ENTITY_NAME&);
+        return &ENTITY_NAME&;
+    }
+
+    //-------UPDATE------------------------------------------------------
+    @Override
+    @Transactional
+    public &ENTITY& edit(&ENTITY& &ENTITY_NAME&) throws Exception {
+        return entityManager.merge(&ENTITY_NAME&);
+    }
+
+    //-------PHYSICAL-REMOVE---------------------------------------------
+    @Override
+    public &ENTITY& physicalRemove(Long id) throws Exception {
+        &ENTITY& &ENTITY_NAME& = entityManager.find(&ENTITY&.class, id);
+        entityManager.remove(&ENTITY_NAME&);
+        return &ENTITY_NAME&;
+    }
+
+    //-------LOGICAL-REMOVE----------------------------------------------
+    @Override
+    @Transactional
+    public &ENTITY& logicalRemove(Long id) throws Exception {
+        &ENTITY& &ENTITY_NAME& = entityManager.find(&ENTITY&.class, id);
+        &ENTITY_NAME&.setStatus(Status.Deleted);
+        return entityManager.merge(&ENTITY_NAME&);
+    }
+
+    //------SELECT-ALL---------------------------------------------------
+    @Override
+    public List<&ENTITY&> findAll() throws Exception {
+        Query query = entityManager.createQuery("select oo from &ENTITY_NAME&Entity oo");
+        return query.getResultList();
+    }
+
+    //------SELECT-BY-ID-------------------------------------------------
+    @Override
+    public &ENTITY& findById(Long id) throws Exception {
+        return entityManager.find(&ENTITY&.class, id);
+    }
+
+    //------SELECT-WITH-PAGINATION---------------------------------------
+    @Override
+    public List<&ENTITY&> findAllPaging(int pageNumber, int pageSize) throws Exception {
+        return null;
+    }
+
+    //------GET-RECORD-COUNT---------------------------------------------
+    @Override
+    public Long getRecordCount() throws Exception {
+        return null;
+    }
+}

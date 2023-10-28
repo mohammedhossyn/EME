@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:x-on="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Projects</title>
+  <meta name="author" content="EME">
+  <meta name="description" content="">
+  <link rel="icon" href="../img/eme%20logo-white.png" />
+  <!-- Tailwind -->
+  <link href="../css/main.min.css" rel="stylesheet">
+  <link href="../css/all.css" rel="stylesheet">
+  <style>
+    @import url(../css/font);
+
+    .font-family-karla {
+      font-family: karla;
+    }
+  </style>
+
+  <!-- AlpineJS -->
+  <script src="../js/alpha.min.js" defer></script>
+  <!-- Font Awesome -->
+  <script src="../js/main.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+</head>
+<body class="bg-white font-family-karla">
+
+<!-- Text Header -->
+<header class="w-full container mx-auto">
+  <div class="flex flex-col items-center py-12">
+    <a class="font-bold text-gray-800 uppercase text-5xl">
+      | EME |
+    </a>
+    <p class="text-lg text-gray-600">
+      I'm Glad you Are Here!
+    </p>
+  </div>
+</header>
+
+<!-- Topic Nav -->
+<nav class="w-full py-4 border-t border-b bg-gray-100" x-data="{ open: false }">
+  <div class="block sm:hidden">
+    <a
+            href="#"
+            class="block md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
+            @click="open = !open"
+    >
+      Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
+    </a>
+  </div>
+  <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
+    <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
+      <a href="main.html" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Main</a>
+      <a href="projects.html" class="hover:bg-gray-400 rounded py-2 px-4 mx-2 selected">Let's See My Projects</a>
+      <a href="aboutME.html" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Let ME Introduce MYSELF</a>
+      <a href="callME.html" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Let ME Know you</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container mx-auto flex flex-wrap py-6">
+
+  <!-- Posts Section -->
+  <section class="xl:w-1/3 lg:w-1/2 flex lg-flex-col px-3">
+    <article class="shadow my-4 mx-4">
+      <!-- Article Image -->
+      <div class="hover:opacity-75">
+        <img class="colorize" src="../img/hrm.jpg">
+      </div>
+      <div class="bg-white flex flex-col justify-start p-6">
+        <p class="text-blue-700 text-sm font-bold uppercase pb-4">About half done, teammates needed</p>
+        <p class="text-3xl font-bold hover:text-gray-700 pb-4">HUMAN RESOURCE MANAGEMENT</p>
+        <p class="text-sm pb-3 font-semibold">
+          "Transactional Process Application"
+        </p>
+        <p class="pb-6">My final JavaEE class project, As the name of project describe what it is, organization application that has a lot of transactional
+        process for hiring workers, payment, retirement, insurance and other related to workers in a company.</p>
+      </div>
+    </article>
+  </section>
+  <section class="xl:w-1/3 lg:w-1/2 flex lg-flex-col px-3">
+    <article class="shadow my-4 mx-4">
+      <!-- Article Image -->
+      <div class="hover:opacity-75">
+        <img class="colorize" src="../img/issueTracker.jpg">
+      </div>
+      <div class="bg-white flex flex-col justify-start p-6">
+        <p class="text-blue-700 text-sm font-bold uppercase pb-4">DONE</p>
+        <p class="text-3xl font-bold hover:text-gray-700 pb-4">MFT PLUS Development</p>
+        <p class="text-sm pb-3 font-semibold">
+          "Educational Environment Daily Works"
+        </p>
+        <p class="pb-6">Where I studied Java, wanted to develop their website, issue tracking and reports, teachers work hour,
+        students projects and exercises upload and some other features. Whole frontend on me plus some parts of backend</p>
+      </div>
+    </article>
+  </section>
+  <section class="xl:w-1/3 lg:w-1/2 flex lg-flex-col px-3">
+    <article class="shadow my-4 mx-4">
+      <!-- Article Image -->
+      <div class="hover:opacity-75">
+        <img class="colorize" src="../img/turkeyProperties.jpg">
+      </div>
+      <div class="bg-white flex flex-col justify-start p-6">
+        <p class="text-blue-700 text-sm font-bold uppercase pb-4">It has just front, need time to finish back</p>
+        <p class="text-3xl font-bold hover:text-gray-700 pb-4" >TURKEY PROPERTIES</p>
+        <p class="text-sm pb-3 font-semibold">
+          "Properties In Turkey For Sale Information"
+        </p>
+        <p class="pb-6">Reading this book will teach you some rules that makes your code upgradable, I mean
+          you'll be able to read and develop that code more easier. Imagine you as a developer hired to
+          make an application with more features and debugging some bugs, if the code be like spaghetti you
+          have take more and more time to make the differences...</p>
+      </div>
+    </article>
+  </section>
+  <section class="xl:w-1/3 lg:w-1/2 flex lg-flex-col px-3">
+    <article class="shadow my-4 mx-4">
+      <!-- Article Image -->
+      <div class="hover:opacity-75">
+        <img class="colorize" src="../img/appMaker.png">
+      </div>
+      <div class="bg-white flex flex-col justify-start p-6">
+        <p class="text-blue-700 text-sm font-bold uppercase pb-4">In progress</p>
+        <p class="text-3xl font-bold hover:text-gray-700 pb-4">APPLICATION MAKER</p>
+        <p class="text-sm pb-3 font-semibold">
+          "An Application Makes Applications"
+        </p>
+        <p class="pb-6">It was an idea from someone to write an application that make applications, good, huh?
+        Yes, we are a team include 7 programmers working on it</p>
+      </div>
+    </article>
+  </section>
+
+
+
+
+
+    <!--            &lt;!&ndash; Pagination &ndash;&gt;-->
+    <!--            <div class="flex items-center py-8">-->
+    <!--                <a href="#" class="h-10 w-10 bg-blue-800 hover:bg-blue-600 font-semibold text-white text-sm flex items-center justify-center">1</a>-->
+    <!--                <a href="#" class="h-10 w-10 font-semibold text-gray-800 hover:bg-blue-600 hover:text-white text-sm flex items-center justify-center">2</a>-->
+    <!--                <a href="#" class="h-10 w-10 font-semibold text-gray-800 hover:text-gray-900 text-sm flex items-center justify-center ml-3">Next <i class="fas fa-arrow-right ml-2"></i></a>-->
+    <!--            </div>-->
+
+
+</div>
+
+<footer class="w-full bg-white pb-12">
+  <div
+          class="relative w-full flex items-center invisible md:visible md:pb-12"
+          x-data="getCarouselData()"
+  >
+    <button
+            class="absolute bg-gray-800 hover:bg-gray-700 text-white text-2xl font-bold hover:shadow rounded-full w-16 h-16 ml-12 z-40" x-on:click="decrement()">
+      &#8592;
+    </button>
+    <template x-for="image in images.slice(currentIndex, currentIndex + 6)" :key="images.indexOf(image)">
+      <img class="w-1/6 invert" :src="image">
+    </template>
+    <button id="decrementBtn"
+            class="absolute right-0 bg-gray-800 hover:bg-gray-700 text-white text-2xl font-bold hover:shadow rounded-full w-16 h-16 mr-12" x-on:click="increment()">
+      &#8594;
+    </button>
+  </div>
+  <div class="w-full container mx-auto flex flex-col items-center">
+    <div class="flex  md:flex-row text-center md:text-left md:justify-between py-6">
+      <a href="https://github.com/mohammedhossyn" class="px-3" target="_blank"><i class="fa-brands fa-github fa-4x hover:text-gray-700"></i></a>
+      <a href="https://t.me/mohammedhossyn" class="px-3" target="_blank"><i class="fa-brands fa-telegram fa-4x hover:text-blue-400"></i></a>
+      <a href="https://linkedin.com/in/mohammedhossyn" class="px-3" target="_blank"><i class="fa-brands fa-linkedin fa-4x hover:text-blue-800"></i></a>
+      <a href="https://instagram.com/eme.java" class="px-3" target="_blank"><i class="fa-brands fa-instagram fa-4x instagram"></i></a>
+    </div>
+    <div class="uppercase pb-6">mohammedhossyn &copy; eme.java</div>
+  </div>
+</footer>
+
+<script>
+  function getCarouselData() {
+    return {
+      currentIndex: 0,
+      images: [
+        '../img/800x800/coffee.jpg',
+        '../img/800x800//eat.jpg',
+        '../img/800x800//code.jpg',
+        '../img/800x800//game.jpg',
+        '../img/800x800//study.jpg',
+        '../img/800x800//music.jpg',
+        '../img/800x800//sleep.jpg',
+        '../img/800x800//repeat.jpg',
+      ],
+      increment() {
+        this.currentIndex = this.currentIndex === this.images.length - 6 ? 0 : this.currentIndex + 1;
+      },
+      decrement() {
+        this.currentIndex = this.currentIndex === 0 ? this.images.length - 6 : this.currentIndex - 1;
+      },
+    }
+  }
+</script>
+
+</body>
+</html>
