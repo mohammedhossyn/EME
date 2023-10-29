@@ -1,4 +1,4 @@
-package com.eme.model;
+package com.eme.model.engine;
 
 import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
@@ -20,7 +20,7 @@ public class ServiceCreatorService {
 
     //------CREATE--------------------------------------------------------
     public void create(String entityName, String servicePackagePath) throws Exception{
-        Path path = Paths.get("./src/main/java/com/eme/model/service.txt");
+        Path path = Paths.get("./src/main/java/com/eme/model/engine/service.txt");
         String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
 
         entityName = entityName.substring(0, 1).toUpperCase() + entityName.substring(1);

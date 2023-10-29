@@ -45,6 +45,12 @@ public class Book extends Base {
     @Pattern(regexp = "[a-zA-Z\\,\\d\\s]{3,2000}$*", message = "BookExplanation_Error")
     private String explanation;
 
+    @JsonbProperty("لینک گوگل")
+    @Column(name = "google_link", columnDefinition = "Clob")
+    @NotBlank
+    @Pattern(regexp = "/http(s?):\\/\\/(www?).google.(com)\\/*/$*", message = "BookGoogleLink_Error")
+    private String googleLink;
+
     @OneToOne
     @JsonbProperty("ضمیمه")
     private Attachment attachment;

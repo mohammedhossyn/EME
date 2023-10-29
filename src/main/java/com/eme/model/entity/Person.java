@@ -14,13 +14,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Entity(name = "personEntity")
 public class Person extends Base {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonbProperty("کد")
-    private Long id;
 
     @JsonbProperty("نام")
     @Column(name = "first_name", columnDefinition = "NVARCHAR2(25)")

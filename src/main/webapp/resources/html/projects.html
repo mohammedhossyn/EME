@@ -44,14 +44,14 @@
   <div class="block sm:hidden">
     <a
             href="#"
-            class="block md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
+            class="block md:hidden text-base font-bold uppercase text-center flex text-left ml-5"
             @click="open = !open"
     >
-      Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
+      <i :class="open ? 'fa fa-bars': 'fa fa-bars'" class="fas ml-2 mt-1 mr-1"></i>Menu
     </a>
   </div>
-  <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
-    <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
+  <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-left sm:w-auto">
+    <div class="w-full container mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
       <a href="main.html" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Main</a>
       <a href="projects.html" class="hover:bg-gray-400 rounded py-2 px-4 mx-2 selected">Let's See My Projects</a>
       <a href="aboutME.html" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Let ME Introduce MYSELF</a>

@@ -1,6 +1,4 @@
-package com.eme.model;
-
-import com.eme.model.entity.Person;
+package com.eme.model.engine;
 
 import java.io.FileWriter;
 import java.lang.reflect.Field;
@@ -81,7 +79,7 @@ public class ControllerCreatorService {
 
         }
 
-        Path path = Paths.get("./src/main/java/com/eme/model/controller.txt");
+        Path path = Paths.get("./src/main/java/com/eme/model/engine/controller.txt");
         String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
 
         entityName = entityName.substring(0, 1).toUpperCase() + entityName.substring(1);

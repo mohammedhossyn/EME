@@ -15,12 +15,12 @@ public class ObjectValidation {
     Validator validator = jakarta.validation.Validation.buildDefaultValidatorFactory().getValidator();
 
     //  ---------CREATE-MAP-FOR-ERRORS---------------------------------------------------
-    Map<String,String> errors = new HashMap<>();
+    Map<String, String> errors = new HashMap<>();
 
     //  ---------VALIDATING-OBJECT-FIELDS-INPUT------------------------------------------
-    public Map<String,String> doValidation(Object object){
+    public Map<String, String> doValidation(Object object) {
         for (ConstraintViolation<Object> violation : validator.validate(object)) {
-            errors.put(violation.getPropertyPath().toString(),violation.getMessage());
+            errors.put(violation.getPropertyPath().toString(), violation.getMessage());
         }
         return errors;
     }

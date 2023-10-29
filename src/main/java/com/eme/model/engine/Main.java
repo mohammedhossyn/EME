@@ -1,21 +1,25 @@
-package com.eme.model;
+package com.eme.model.engine;
 
-import com.eme.model.entity.Me;
-import com.eme.model.entity.Person;
+import com.eme.controller.message.ErrorMessages;
+import jakarta.inject.Inject;
 
-import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
+
     public static void main(String[] args) throws Exception {
 
+
 //        ServiceCreatorService.getService().create(
-//                "attachment",
+//                "Project",
 //                "./src/main/java/com/eme/model/service");
 
 //                ControllerCreatorService.getService().create(
-//                        "com.eme.model.entity.Attachment",
-//                "attachment",
+//                        "com.eme.model.entity.Project",
+//                "project",
 //                "./src/main/java/com/eme/controller");
 
 //        System.out.println(Arrays.toString(Person.class.getDeclaredFields()));

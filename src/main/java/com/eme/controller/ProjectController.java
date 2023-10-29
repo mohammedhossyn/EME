@@ -3,11 +3,11 @@ package com.eme.controller;
 import com.eme.controller.exceptions.ExceptionWrapper;
 import com.eme.controller.validation.ObjectValidation;
 import com.eme.model.entity.Attachment;
-import com.eme.model.entity.Person;
+import com.eme.model.entity.Project;
 import com.eme.model.entity.enums.Status;
 import com.eme.model.entity.enums.Role;
 import com.eme.model.entity.enums.TransactionStatus;
-import com.eme.model.service.PersonService;
+import com.eme.model.service.ProjectService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -17,13 +17,13 @@ import java.util.Map;
 
 @RequestScoped
 @Named
-public class PersonController {
+public class ProjectController {
 
     @Inject
-    private Person person;
+    private Project project;
 
     @Inject
-    private PersonService personService;
+    private ProjectService projectService;
 
     @Inject
     private ObjectValidation objectValidation;
@@ -36,37 +36,29 @@ public class PersonController {
 
     //-------INSERT------------------------------------------------------
     public Map<TransactionStatus, Object> save(
-            String firstName,
-            String lastName,
-            String phone,
-            String email,
-            String github,
-            String telegram,
-            String linkedin,
-            String instagram,
-            Role role
+            String name,
+            String progress,
+            String title,
+            String explanation,
+            Attachment attachment
     ) {
         result.clear();
         errors.clear();
 
         //  ---------CREATE-OBJECT-----------------
-        person = Person.builder()
-                .firstName(firstName)
-                .lastName(lastName)
-                .phone(phone)
-                .email(email)
-                .github(github)
-                .telegram(telegram)
-                .linkedin(linkedin)
-                .instagram(instagram)
-                .role(role)
+        project = Project.builder()
+                .name(name)
+                .progress(progress)
+                .title(title)
+                .explanation(explanation)
+                .attachment(attachment)
                 .build();
 
         //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(person);
+        errors = objectValidation.doValidation(project);
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, personService.save(person));
+                result.put(TransactionStatus.Done, projectService.save(project));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }
@@ -81,40 +73,32 @@ public class PersonController {
             Status status,
             Long versionId,
             Long id,
-            String firstName,
-            String lastName,
-            String phone,
-            String email,
-            String github,
-            String telegram,
-            String linkedin,
-            String instagram,
-            Role role
+            String name,
+            String progress,
+            String title,
+            String explanation,
+            Attachment attachment
     ) {
         result.clear();
         errors.clear();
 
         //  ---------CREATE-OBJECT-----------------
-        person = Person.builder()
+        project = Project.builder()
                 .status(status)
                 .versionId(versionId)
                 .id(id)
-                .firstName(firstName)
-                .lastName(lastName)
-                .phone(phone)
-                .email(email)
-                .github(github)
-                .telegram(telegram)
-                .linkedin(linkedin)
-                .instagram(instagram)
-                .role(role)
+                .name(name)
+                .progress(progress)
+                .title(title)
+                .explanation(explanation)
+                .attachment(attachment)
                 .build();
 
         //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(person);
+        errors = objectValidation.doValidation(project);
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, personService.save(person));
+                result.put(TransactionStatus.Done, projectService.save(project));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }
@@ -128,7 +112,7 @@ public class PersonController {
     public Map<TransactionStatus, Object> physicalRemove(Long id) {
         result.clear();
         try {
-            result.put(TransactionStatus.Done, personService.physicalRemove(id));
+            result.put(TransactionStatus.Done, projectService.physicalRemove(id));
         } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
         }
@@ -139,7 +123,7 @@ public class PersonController {
     public Map<TransactionStatus, Object> logicalRemove(Long id) {
         result.clear();
         try {
-            result.put(TransactionStatus.Done, personService.physicalRemove(id));
+            result.put(TransactionStatus.Done, projectService.physicalRemove(id));
         } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
         }
@@ -150,7 +134,7 @@ public class PersonController {
     public Map<TransactionStatus, Object> findAll() {
         result.clear();
         try {
-            result.put(TransactionStatus.Done, personService.findAll());
+            result.put(TransactionStatus.Done, projectService.findAll());
         } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
         }
@@ -161,7 +145,7 @@ public class PersonController {
     public Map<TransactionStatus, Object> findById(Long id) {
         result.clear();
         try {
-            result.put(TransactionStatus.Done, personService.findById(id));
+            result.put(TransactionStatus.Done, projectService.findById(id));
         } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
         }

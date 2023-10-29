@@ -14,10 +14,17 @@ public enum Error {
     Telegram_Error,
     Linkedin_Error,
     Instagram_Error,
-    Short_About_Me_Error,
-    Complete_About_Me_Error,
+    MyBirthday_Error,
+    MyJob_Error,
+    ShortAboutMe_Error,
+    CompleteAboutMe_Error,
     BookTitle_Error,
     BookName_Error,
     BookWriter_Error,
-    BookExplanation_Error
+    BookExplanation_Error,
+    BookGoogleLink_Error,
+    ProjectName_Error,
+    ProjectProgress_Error,
+    ProjectTitle_Error,
+    ProjectExplanation_Error
 }
