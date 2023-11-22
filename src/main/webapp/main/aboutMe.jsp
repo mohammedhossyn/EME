@@ -41,12 +41,12 @@
     </div>
     <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-left sm:w-auto">
         <div class="w-full container mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-            <a href="/main" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Main</a>
+            <a href="/mainPage" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Main</a>
             <a href="/projects" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let's See My
                 Projects</a>
-            <a href="/aboutME" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2 selected">Let ME Introduce
+            <a href="/aboutMe" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2 selected">Let ME Introduce
                 MYSELF</a>
-            <a href="/callME" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let ME Know you</a>
+            <a href="/callMe" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let ME Know you</a>
         </div>
     </div>
 </nav>
@@ -57,20 +57,20 @@
         <article class="shadow my-4 mx-4 items-center">
             <!-- Article Image -->
             <div class="grid p-5">
-                <img class="rounded-full hover:opacity-75 justify-self-center" src="${me.attachment.path}" alt="${me.attachment.name}">
+                <img class="rounded-full hover:opacity-75 justify-self-center" src="${sessionScope.me.attachment.path}" alt="${sessionScope.me.attachment.name}">
             </div>
             <div class="bg-white p-6 text-center justify-self-center">
-                <p class="text-sm font-bold uppercase pb-4">${me.birthday}</p>
-                <p class="text-3xl font-bold hover:text-gray-700 pb-4">${me.firstName} ${me.lastName}</p>
+                <p class="text-sm font-bold uppercase pb-4">${sessionScope.me.birthday}</p>
+                <p class="text-3xl font-bold hover:text-gray-700 pb-4">${sessionScope.me.firstName} ${sessionScope.me.lastName}</p>
                 <p class="text-sm pb-3 font-semibold">
-                    "${me.jobPosition}"
+                    "${sessionScope.me.jobPosition}"
                 </p>
-                <p class="text-lg pb-6 w-2/3 inline-flex">${me.completeAboutMeContent}
+                <p class="text-lg pb-6 w-2/3 inline-flex">${sessionScope.me.completeAboutMeContent}
                 </p>
                 <p class="pb-3 font-semibold">
                     THANKS
                 </p>
-                <a href="/callME" class="w-1/4 bg-gray-800 text-white font-bold text-sm uppercase rounded hover:bg-gray-700 inline-flex items-center justify-center px-2 py-3 mt-4">
+                <a href="/callMe" class="w-1/4 bg-gray-800 text-white font-bold text-sm uppercase rounded hover:bg-gray-700 inline-flex items-center justify-center px-2 py-3 mt-4">
                     Be in touch
                 </a>
             </div>
@@ -99,17 +99,18 @@
     </div>
     <div class="w-full container mx-auto flex flex-col items-center">
         <div class="flex  md:flex-row text-center md:text-left md:justify-between py-6">
-            <a href="${me.github}" class="px-3" target="_blank"><i
+            <a href="https://github.com/${sessionScope.me.github}" class="px-3" target="_blank"><i
                     class="fa-brands fa-github fa-4x hover:text-gray-700"></i></a>
-            <a href="${me.telegram}" class="px-3" target="_blank"><i
+            <a href="https://t.me/${sessionScope.me.telegram}" class="px-3" target="_blank"><i
                     class="fa-brands fa-telegram fa-4x hover:text-blue-400"></i></a>
-            <a href="${me.linkedin}" class="px-3" target="_blank"><i
+            <a href="https://linkedin.com/in/${sessionScope.me.linkedin}" class="px-3" target="_blank"><i
                     class="fa-brands fa-linkedin fa-4x hover:text-blue-800"></i></a>
-            <a href="${me.instagram}" class="px-3" target="_blank"><i
+            <a href="https://instagram.com/${sessionScope.me.instagram}" class="px-3" target="_blank"><i
                     class="fa-brands fa-instagram fa-4x instagram"></i></a>
         </div>
         <div class="uppercase pb-6">mohammedhossyn &copy; eme.java</div>
     </div>
 </footer>
+<jsp:include page="js.jsp"></jsp:include>
 </body>
 </html>

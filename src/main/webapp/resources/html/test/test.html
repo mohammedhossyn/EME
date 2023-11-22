@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .selected{
+            background: #fbcf33;
+        }
+        .selected div{
+            background: #ff7171;
+        }
+        .selected div p {
+            background: #5acce5;
+        }
+        .selected p {
+            background: #aaffaa;
+        }
+    </style>
+</head>
+<body>
+<p id="result"></p>
+<div id="ijt" class="">
+    <div>
+        hi
+        <p> hello</p>
+    </div>
+    <p>goodbye</p>
+</div>
+</body>
+<script>
+    let url = window.location.href;
+    const pages = ["tab", "hi", "ijt", "hello"];
+    pages.forEach(myFunction);
+
+    function myFunction(item) {
+        const number = url.search(item);
+        if (number > 0) {
+            document.getElementById(item).classList.add("selected");
+        }
+    }
+</script>
+</html>

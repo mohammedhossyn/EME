@@ -3,13 +3,12 @@ package com.eme.controller;
 import com.eme.controller.exceptions.ExceptionWrapper;
 import com.eme.controller.validation.ObjectValidation;
 import com.eme.model.entity.Attachment;
-import com.eme.model.entity.Attachment;
 import com.eme.model.entity.enums.FormatType;
 import com.eme.model.entity.enums.Status;
-import com.eme.model.entity.enums.Role;
 import com.eme.model.entity.enums.TransactionStatus;
 import com.eme.model.service.AttachmentService;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
@@ -21,9 +20,6 @@ import java.util.Map;
 public class AttachmentController {
 
     @Inject
-    private Attachment attachment;
-
-    @Inject
     private AttachmentService attachmentService;
 
     @Inject
@@ -32,8 +28,8 @@ public class AttachmentController {
     @Inject
     private ExceptionWrapper exceptionWrapper;
 
-    private Map<TransactionStatus, Object> result;
-    private Map<String, String> errors;
+    private Map<TransactionStatus, Object> result = new HashMap<>();
+    private Map<String, String> errors = new HashMap<>();
 
     //-------INSERT------------------------------------------------------
     public Map<TransactionStatus, Object> save(
@@ -44,18 +40,19 @@ public class AttachmentController {
         result.clear();
         errors.clear();
 
-        //  ---------CREATE-OBJECT-----------------
-        attachment = Attachment.builder()
+        //  ---------VALIDATING-DATA---------------
+        errors = objectValidation.doValidation(Attachment.builder()
                 .name(name)
                 .path(path)
                 .formatType(formatType)
-                .build();
-
-        //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(attachment);
+                .build());
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, attachmentService.save(attachment));
+                result.put(TransactionStatus.Done, attachmentService.save(Attachment.builder()
+                        .name(name)
+                        .path(path)
+                        .formatType(formatType)
+                        .build()));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }
@@ -68,7 +65,6 @@ public class AttachmentController {
     //-------UPDATE------------------------------------------------------
     public Map<TransactionStatus, Object> edit(
             Status status,
-            Long versionId,
             Long id,
             String name,
             String path,
@@ -77,21 +73,23 @@ public class AttachmentController {
         result.clear();
         errors.clear();
 
-        //  ---------CREATE-OBJECT-----------------
-        attachment = Attachment.builder()
+        //  ---------VALIDATING-DATA---------------
+        errors = objectValidation.doValidation(Attachment.builder()
                 .status(status)
-                .versionId(versionId)
                 .id(id)
                 .name(name)
                 .path(path)
                 .formatType(formatType)
-                .build();
-
-        //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(attachment);
+                .build());
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, attachmentService.save(attachment));
+                result.put(TransactionStatus.Done, attachmentService.edit(Attachment.builder()
+                        .status(status)
+                        .id(id)
+                        .name(name)
+                        .path(path)
+                        .formatType(formatType)
+                        .build()));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }

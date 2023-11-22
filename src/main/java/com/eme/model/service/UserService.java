@@ -1,9 +1,13 @@
 package com.eme.model.service;
 
+import com.eme.controller.session.FacesSessionMap;
+import com.eme.model.entity.MessageVO;
 import com.eme.model.entity.User;
+import com.eme.model.entity.enums.Role;
 import com.eme.model.entity.enums.Status;
 import com.eme.model.service.impl.ServiceImpl;
 import jakarta.enterprise.context.*;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -11,15 +15,19 @@ import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RequestScoped
 @Named
-public class UserService implements ServiceImpl<User, String>,Serializable {
+public class UserService implements ServiceImpl<User, String>, Serializable {
+
 
     @PersistenceContext(unitName = "eme")
     private EntityManager entityManager;
+
 
     //-------INSERT------------------------------------------------------
     @Override
@@ -38,6 +46,7 @@ public class UserService implements ServiceImpl<User, String>,Serializable {
 
     //-------PHYSICAL-REMOVE---------------------------------------------
     @Override
+    @Transactional
     public User physicalRemove(String username) throws Exception {
         User user = entityManager.find(User.class, username);
         entityManager.remove(user);
@@ -76,5 +85,24 @@ public class UserService implements ServiceImpl<User, String>,Serializable {
     @Override
     public Long getRecordCount() throws Exception {
         return null;
+    }
+
+    //------VALIDATE-USER-EXISTS-----------------------------------------
+    public User userValidation(User user) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("username", user.getUsername());
+        params.put("password", user.getPassword());
+        params.put("status", Status.Active);
+        params.put("role", Role.ME);
+        Query query = entityManager.createNamedQuery("user.validate");
+        for (String key : params.keySet()) {
+            query.setParameter(key, params.get(key));
+        }
+        List<User> result = query.getResultList();
+        if (!result.isEmpty()) {
+             return user = result.get(0);
+        } else {
+            return null;
+        }
     }
 }

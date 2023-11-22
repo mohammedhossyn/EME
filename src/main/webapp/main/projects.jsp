@@ -42,31 +42,31 @@
     </div>
     <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-left sm:w-auto">
         <div class="w-full container mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-            <a href="/main" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Main</a>
+            <a href="/mainPage" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Main</a>
             <a href="/projects" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2 selected">Let's See My
                 Projects</a>
-            <a href="/aboutME" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let ME Introduce
+            <a href="/aboutMe" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let ME Introduce
                 MYSELF</a>
-            <a href="/callME" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let ME Know you</a>
+            <a href="/callMe" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let ME Know you</a>
         </div>
     </div>
 </nav>
 <div class="container mx-auto flex flex-wrap py-6">
     <!-- Posts Section -->
-    <c:forEach items="${sessionScope.projects}" var="project">
+    <c:forEach items="${sessionScope.projects}" var="p">
         <section class="xl:w-1/3 lg:w-1/2 flex lg-flex-col px-3">
             <article class="shadow my-4 mx-4">
                 <!-- Article Image -->
                 <div class="hover:opacity-75">
-                    <img class="colorize" src="${project.attachment.path}" alt="${project.name}">
+                    <img class="colorize" src="${p.attachment.path}" alt="${p.name}">
                 </div>
                 <div class="bg-white flex flex-col justify-start p-6">
-                    <p class="text-blue-700 text-sm font-bold uppercase pb-4">${project.progress}</p>
-                    <p class="text-3xl font-bold hover:text-gray-700 pb-4">${project.name}</p>
+                    <p class="text-blue-700 text-sm font-bold uppercase pb-4">${p.progress}</p>
+                    <p class="text-3xl font-bold hover:text-gray-700 pb-4">${p.name}</p>
                     <p class="text-sm pb-3 font-semibold">
-                        "${project.title}"
+                        "${p.title}"
                     </p>
-                    <p class="pb-6">${project.explanation}</p>
+                    <p class="pb-6">${p.explanation}</p>
                 </div>
             </article>
         </section>
@@ -93,17 +93,18 @@
     </div>
     <div class="w-full container mx-auto flex flex-col items-center">
         <div class="flex  md:flex-row text-center md:text-left md:justify-between py-6">
-            <a href="${me.github}" class="px-3" target="_blank"><i
+            <a href="https://github.com/${sessionScope.me.github}" class="px-3" target="_blank"><i
                     class="fa-brands fa-github fa-4x hover:text-gray-700"></i></a>
-            <a href="${me.telegram}" class="px-3" target="_blank"><i
+            <a href="https://t.me/${sessionScope.me.telegram}" class="px-3" target="_blank"><i
                     class="fa-brands fa-telegram fa-4x hover:text-blue-400"></i></a>
-            <a href="${me.linkedin}" class="px-3" target="_blank"><i
+            <a href="https://linkedin.com/in/${sessionScope.me.linkedin}" class="px-3" target="_blank"><i
                     class="fa-brands fa-linkedin fa-4x hover:text-blue-800"></i></a>
-            <a href="${me.instagram}" class="px-3" target="_blank"><i
+            <a href="https://instagram.com/${sessionScope.me.instagram}" class="px-3" target="_blank"><i
                     class="fa-brands fa-instagram fa-4x instagram"></i></a>
         </div>
         <div class="uppercase pb-6">mohammedhossyn &copy; eme.java</div>
     </div>
 </footer>
+<jsp:include page="js.jsp"></jsp:include>
 </body>
 </html>

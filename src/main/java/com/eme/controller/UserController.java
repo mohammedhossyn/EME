@@ -1,26 +1,30 @@
 package com.eme.controller;
 
 import com.eme.controller.exceptions.ExceptionWrapper;
+import com.eme.controller.session.FacesSessionMap;
 import com.eme.controller.validation.ObjectValidation;
 import com.eme.model.entity.Attachment;
+import com.eme.model.entity.MessageVO;
 import com.eme.model.entity.User;
 import com.eme.model.entity.enums.Status;
 import com.eme.model.entity.enums.Role;
 import com.eme.model.entity.enums.TransactionStatus;
 import com.eme.model.service.UserService;
+import jakarta.enterprise.context.ConversationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 @RequestScoped
 @Named
-public class UserController {
-
-    @Inject
-    private User user;
+public class UserController implements Serializable {
 
     @Inject
     private UserService userService;
@@ -31,8 +35,11 @@ public class UserController {
     @Inject
     private ExceptionWrapper exceptionWrapper;
 
-    private Map<TransactionStatus, Object> result;
-    private Map<String, String> errors;
+    @Inject
+    private FacesSessionMap facesSessionMap;
+
+    private Map<TransactionStatus, Object> result = new HashMap<>();
+    private Map<String, String> errors = new HashMap<>();
 
     //-------INSERT------------------------------------------------------
     public Map<TransactionStatus, Object> save(
@@ -42,17 +49,18 @@ public class UserController {
         result.clear();
         errors.clear();
 
-        //  ---------CREATE-OBJECT-----------------
-        user = User.builder()
-                .username(username)
-                .password(password)
-                .build();
 
         //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(user);
+        errors = objectValidation.doValidation(User.builder()
+                .username(username)
+                .password(password)
+                .build());
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, userService.save(user));
+                result.put(TransactionStatus.Done, userService.save(User.builder()
+                        .username(username)
+                        .password(password)
+                        .build()));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }
@@ -65,26 +73,26 @@ public class UserController {
     //-------UPDATE------------------------------------------------------
     public Map<TransactionStatus, Object> edit(
             Status status,
-            Long versionId,
             String username,
             String password
     ) {
         result.clear();
         errors.clear();
 
-        //  ---------CREATE-OBJECT-----------------
-        user = User.builder()
-                .status(status)
-                .versionId(versionId)
-                .username(username)
-                .password(password)
-                .build();
 
         //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(user);
+        errors = objectValidation.doValidation(User.builder()
+                .status(status)
+                .username(username)
+                .password(password)
+                .build());
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, userService.save(user));
+                result.put(TransactionStatus.Done, userService.edit(User.builder()
+                        .status(status)
+                        .username(username)
+                        .password(password)
+                        .build()));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }
@@ -136,6 +144,23 @@ public class UserController {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
         }
         return result;
+    }
+
+    //------LOG-IN-------------------------------------------------------
+    public Boolean validateUser(User user) {
+        try {
+            User result = userService.userValidation(user);
+            if (result != null) {
+                facesSessionMap.login(user.getUsername());
+                return true;
+            } else {
+                facesSessionMap.setMessage(MessageVO.builder().error("Username and password is Wrong!").build());
+                return false;
+            }
+        } catch (Exception e) {
+            exceptionWrapper.getMessage(e);
+            return false;
+        }
     }
 
 }

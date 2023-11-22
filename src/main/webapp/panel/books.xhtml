@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <title><ui:insert name="title">ME</ui:insert></title>
+    <meta name="author" content="EME"/>
+    <meta name="description" content=""/>
+    <link rel="icon" href="../resources/img/eme%20logo-white.png"/>
+    <h:outputStylesheet library="css" name="tailwind.min.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="theme.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="all2.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="font.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+    <aside class="max-w-62.5 bg-white ease-nav-brand z-990 absolute inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent text-gray-800"
+           id="sidenav-main">
+        <div class="h-19.5">
+            <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
+               sidenav-close="" aria-hidden="true"></i>
+            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="javascript:;">
+                <img src="../resources/img/eme%20logo-black.png"
+                     class="inline h-full max-w-full transition-all duration-200 ease-nav-brand w-2/5" alt="main_logo"/>
+                <!--            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">EME</span>-->
+            </a>
+        </div>
+        <hr class="h-px mt-0 bg-transparent bg-gradient-horizontal-dark"/>
+        <div class="items-center block w-auto max-h-screen overflow-auto grow basis-full">
+            <ul class="flex flex-col pl-0 mb-0">
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                       href="javascript:;">
+                        <div class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-transparent bg-center stroke-0 text-center xl:p-2.5">
+                            <i class="fad fa-dashboard text-black"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Dashboard</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                       href="me.xhtml">
+                        <div class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-transparent bg-center stroke-0 text-center xl:p-2.5">
+                            <i class="fad fa-user text-black"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">ME</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-transparent px-4 font-semibold text-slate-700 transition-colors"
+                       href="books.xhtml">
+                        <div class="bg-gray-800 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                            <i class="fad fa-books text-white"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Books</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                       href="javascript:;">
+                        <div class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-transparent bg-center stroke-0 text-center xl:p-2.5">
+                            <i class="fad fa-folders text-black"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Projects</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <div class="ease-soft-in-out xl:ml-68.5 relative h-full rounded-xl transition-all duration-200" id="panel">
+        <nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all shadow-none duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start"
+             id="navbarTop" navbar-scroll="true">
+            <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
+                <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
+                    <div class="flex items-center md:ml-auto md:pr-4">
+                        <!--                    <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease-soft">-->
+                        <!--                            <span class="text-sm ease-soft leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-gray-800 transition-all">-->
+                        <!--                                <i class="fas fa-search" aria-hidden="true"></i>-->
+                        <!--                            </span>-->
+                        <!--                        <input type="text"-->
+                        <!--                               class="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"-->
+                        <!--                               placeholder="Type here...">-->
+                        <!--                    </div>-->
+                    </div>
+                    <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
+                        <li class="flex items-center">
+                            <a href=""
+                               class="block px-0 py-2 text-m font-semibold transition-all ease-nav-brand text-gray-800">
+                                <img src="#{myBean.attachment.path}"
+                                     class="w-7 h-7 sm:mr-1 rounded-3.5xl inline-block" aria-hidden="true"
+                                     alt="#{userLoggedIn.username}" title="#{userLoggedIn.username}"/>
+                                <span class="hidden sm:inline text-gray-800">#{userLoggedIn.username}</span>
+                            </a>
+                        </li>
+                        <li class="relative flex items-center px-4">
+                            <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-gray-800"
+                               dropdown-trigger="" aria-expanded="false">
+                                <i class="cursor-pointer fad fa-cog fa-xl text-gray-800" aria-hidden="true"></i>
+                            </a>
+                            <ul dropdown-menu=""
+                                class="text-sm transform-dropdown before:font-awesome before:leading-default before:duration-350 before:ease-soft lg:shadow-soft-3xl duration-250 min-w-44 before:sm:right-7.5 before:text-5.5 pointer-events-none absolute right-0 top-0 z-50 origin-top list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-2 py-4 text-left text-gray-800 opacity-0 transition-all before:absolute before:right-2 before:left-auto before:top-0 before:z-50 before:inline-block before:font-normal before:text-white before:antialiased before:transition-all before:content-['\f0d8'] sm:-mr-6 lg:absolute lg:right-0 lg:left-auto lg:mt-2 lg:block lg:cursor-pointer">
+                                <li class="relative">
+                                    <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors"
+                                       href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-transparent shadow-soft-3xl h-9 w-9 rounded-xl">
+                                                <i class="fad fa-memo text-gray-800"></i>
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mt-2 text-sm font-normal leading-normal text-gray-800">
+                                                    <span class="font-semibold">Profile</span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors"
+                                       href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-transparent shadow-soft-3xl h-9 w-9 rounded-xl">
+                                                <i class="fad fa-users text-gray-800"></i>
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mt-2 text-sm font-normal leading-normal text-gray-800">
+                                                    <span class="font-semibold">Users</span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors"
+                                       href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-transparent shadow-soft-3xl h-9 w-9 rounded-xl">
+                                                <i class="fad fa-power-off text-gray-800"></i>
+                                            </div>
+                                            <h:form class="flex flex-col justify-center">
+                                                <h:commandButton
+                                                        styleClass="mt-2 text-sm font-semibold leading-normal text-gray-800 cursor-pointer"
+                                                        action="#{facesSessionMap.logout()}" value="Logout">
+                                                    <f:ajax render="@all"></f:ajax>
+                                                </h:commandButton>
+                                            </h:form>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="relative flex items-center pr-2">
+                            <p class="hidden transform-dropdown-show"></p>
+                            <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-gray-800"
+                               dropdown-trigger="" aria-expanded="false">
+                                <i class="cursor-pointer fad fa-bell fa-xl text-gray-800" aria-hidden="true"></i>
+                            </a>
+                            <ul dropdown-menu=""
+                                class="text-sm transform-dropdown before:font-awesome before:leading-default before:duration-350 before:ease-soft lg:shadow-soft-3xl duration-250 min-w-44 before:sm:right-7.5 before:text-5.5 pointer-events-none absolute right-0 top-0 z-50 origin-top list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-2 py-4 text-left text-gray-800 opacity-0 transition-all before:absolute before:right-2 before:left-auto before:top-0 before:z-50 before:inline-block before:font-normal before:text-white before:antialiased before:transition-all before:content-['\f0d8'] sm:-mr-6 lg:absolute lg:right-0 lg:left-auto lg:mt-2 lg:block lg:cursor-pointer">
+                                <li class="relative">
+                                    <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors"
+                                       href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-transparent shadow-soft-3xl h-9 w-9 rounded-xl">
+                                                <i class="fad fa-message text-gray-800"></i>
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal text-gray-800">
+                                                    <span class="font-semibold">New message</span> from Laur
+                                                </h6>
+                                                <p class="mb-0 text-xs leading-tight text-gray-400">
+                                                    <i class="mr-1 fa fa-clock" aria-hidden="true"></i> 13 minutes ago
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700"
+                                       href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-transparent shadow-soft-3xl h-9 w-9 rounded-xl">
+                                                <i class="fad fa-message text-gray-800"></i>
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal text-gray-800">
+                                                    <span class="font-semibold">New album</span> by Travis Scott
+                                                </h6>
+                                                <p class="mb-0 text-xs leading-tight text-gray-400">
+                                                    <i class="mr-1 fa fa-clock" aria-hidden="true"></i> 1 day
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700"
+                                       href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-transparent shadow-soft-3xl h-9 w-9 rounded-xl">
+                                                <i class="fad fa-credit-card text-gray-800"></i>
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal text-gray-800">Payment
+                                                    successfully
+                                                    completed</h6>
+                                                <p class="mb-0 text-xs leading-tight text-gray-400">
+                                                    <i class="mr-1 fa fa-clock" aria-hidden="true"></i> 2 days
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="flex items-center pl-4 xl:hidden">
+                            <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-gray-800"
+                               sidenav-trigger="">
+                                <div class="w-4.5 overflow-hidden">
+                                    <i class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
+                                    <i class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
+                                    <i class="ease-soft relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <main class="w-full px-6 py-6 mx-auto text-gray-800">
+            <div class="flex flex-wrap -mx-3 removable">
+                <div class="w-full max-w-full px-3 mb-6 sm:w-full sm:flex-none xl:mb-0">
+                    <div class="relative z-20 flex flex-col min-w-0 break-words bg-white border-0 border-solid dark:bg-gray-950 border-black-125 shadow-soft-xl dark:shadow-soft-dark-xl rounded-2xl bg-clip-border mb-4">
+                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
+                            <h6 class="mb-0 text-xl">New Book</h6>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <div class="flex flex-nowrap -mx-3 removable">
+                                <h:form enctype="multipart/form-data">
+                                    <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none md:w-1/2 xl:mb-0 lg:w-8/12 xl:w-full">
+                                        <div class="flex flex-col-res pl-0 mb-0 rounded-lg md:block">
+                                            <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-1/2-custom md:w-1/2 mr-6 ml-2">
+                                                <div class="w-full min-h-6 mb-0.5 inline-block pl-0">
+                                                    <label for="title"
+                                                           class=" block mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                        <i class="fad fa-heading text-lg mr-1"></i>Title:</label>
+                                                    <h:inputText id="title" label="title"
+                                                                 styleClass="w-full p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8 ">
+                                                        <f:validateBean for="title"/>
+                                                    </h:inputText>
+                                                    <h:message for="title" styleClass="text-red-600 text-sm"/>
+                                                </div>
+                                            </div>
+                                            <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-1/2-custom md:w-1/2 ml-2">
+                                                <div class="w-full min-h-6 mb-0.5 inline-block pl-0">
+                                                    <label for="name"
+                                                           class=" mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800 block">
+                                                        <i class="fad fa-signature text-lg mr-1"></i>Name:</label>
+                                                    <h:inputText id="name" label="name"
+                                                                 styleClass="w-full p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8">
+                                                        <f:validateBean for="name"/>
+                                                    </h:inputText>
+                                                    <h:message for="name" styleClass="text-red-600 text-sm"/>
+                                                </div>
+                                            </div>
+                                            <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-1/2-custom md:w-1/2 mr-6 ml-2">
+                                                <div class="w-full min-h-6 mb-0.5 inline-block pl-0">
+                                                    <label for="writer"
+                                                           class="block mb-0  overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                        <i class="fad fa-pen-nib text-lg mr-1"></i>Writer:</label>
+                                                    <h:inputText id="writer" label="writer"
+                                                                 styleClass="w-full p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8">
+                                                        <f:validateBean for="writer"/>
+                                                    </h:inputText>
+                                                    <h:message for="writer" styleClass="text-red-600 text-sm"/>
+                                                </div>
+                                            </div>
+                                            <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-1/2-custom md:w-1/2 ml-2">
+                                                <div class="w-full min-h-6 mb-0.5 inline-block pl-0">
+                                                    <label for="googleLink"
+                                                           class=" block mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                        <i class="fa-brands fa-google text-lg mr-1"></i>Google Link:</label>
+                                                    <h:inputText id="googleLink" label="googleLink"
+                                                                 styleClass="w-full p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8 ">
+                                                        <f:validateBean for="googleLink"/>
+                                                    </h:inputText>
+                                                    <h:message for="googleLink" styleClass="text-red-600 text-sm"/>
+                                                </div>
+                                            </div>
+                                            <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-2/5 md:w-1/2 ml-2">
+                                                <div class="min-h-6 mb-0.5 inline-block pl-0">
+                                                    <label for="bookPicture"
+                                                           class="block mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                        <i class="fad fa-image text-lg mr-1"></i>Picture:</label>
+                                                    <h:inputFile id="bookPicture" label="bookPicture"
+                                                                 styleClass="mainInput hidden">
+                                                        <f:validateBean for="bookPicture"/>
+                                                    </h:inputFile>
+                                                    <button type="button" id="fakeInput"
+                                                            class="inline-block px-4 py-2 mb-0 text-center uppercase align-middle transition-all bg-gray-800 shadow-soft-2xl hover:bg-white hover:text-black rounded-lg text-white"
+                                                            style="margin-bottom: 5px">Select Image
+                                                    </button>
+                                                    <span id="selected_filename"
+                                                          class="bg-gray-50 p-2 rounded-1.8">No Selected Image</span>
+                                                    <h:message for="bookPicture"
+                                                               styleClass="text-red-600 text-sm"/>
+                                                </div>
+                                            </div>
+                                            <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-2/3 md:w-1/2 ml-2">
+                                                <div class="min-h-6 mb-0.5 inline-block pl-0 w-full">
+                                                    <label for="explanation"
+                                                           class=" block mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                        <i class="fad fa-exclamation text-lg mr-1"></i>Explanation:</label>
+                                                    <h:inputTextarea id="explanation"
+                                                                     label="explanation"
+                                                                     styleClass="p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8 w-full h-9">
+                                                        <f:validateBean for="explanation"/>
+                                                    </h:inputTextarea>
+                                                    <h:message for="explanation" styleClass="text-red-600 text-sm"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit w-1/2 ml-2 file-upload">
+                                            <div class="min-h-6 mb-0.5 inline-block pl-0 w-full">
+                                                <h:commandButton
+                                                        styleClass="inline-block px-4 py-2 mb-0 text-center uppercase align-middle transition-all bg-gray-800 shadow-soft-2xl hover:bg-white hover:text-black rounded-lg text-white cursor-pointer"
+                                                        value="Save">
+                                                </h:commandButton>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-wrap -mx-3  removable">
+                <div class="w-full max-w-full px-3 mb-6 sm:w-full sm:flex-none xl:mb-0">
+                    <div class="relative flex flex-col w-full min-w-0 mb-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border mb-4">
+                        <div class="p-6 pb-0 mb-0 bg-white rounded-t-2xl">
+                            <h6>Books</h6>
+                        </div>
+                        <div class="flex-auto px-0 pt-0 pb-2">
+                            <div class="p-0 overflow-x-auto">
+                                <h:dataTable value="#{bookBean.init()}" var="b" id="booksTable"
+                                             styleClass="items-center w-full mb-0 align-top border-gray-200 text-slate-500"
+                                             columnClasses="p-4 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent,
+                                             p-4 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent,
+                                             p-4 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent,
+                                             p-4 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent,
+                                             p-4 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent,
+                                             p-4 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent,
+                                             p-4 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
+                                             headerClass="px-6 py-6 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 align-bottom">
+                                    <h:column>
+                                        <f:facet name="header">Id</f:facet>
+                                        #{b.id}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Title</f:facet>
+                                        #{b.title}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Name</f:facet>
+                                        #{b.name}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Writer</f:facet>
+                                        #{b.writer}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Picture</f:facet>
+                                        <img src="#{b.attachment.path}" class="justify-self-center" width="80"
+                                             height="40"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><i class="fad fa-pen text-lg"></i></f:facet>
+                                        <h:form>
+                                            <h:commandButton
+                                                    styleClass="open-modal inline-block px-4 py-2 mb-0 text-center uppercase align-middle transition-all bg-gray-800 shadow-soft-2xl hover:bg-white hover:text-black rounded-lg text-white cursor-pointer"
+                                                    value="Edit"
+                                                    action="#{bookBean.loadForEdit(b.id)}">
+                                                <f:ajax execute="@form" render="editForm @form" ></f:ajax>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><i class="fad fa-trash-can text-lg"></i></f:facet>
+                                        <h:form>
+                                            <h:commandButton
+                                                    styleClass="inline-block px-4 py-2 mb-0 text-center uppercase align-middle transition-all bg-red-500 shadow-soft-2xl hover:bg-white hover:text-black rounded-lg text-white cursor-pointer"
+                                                    value="Delete"
+                                                    action="#{bookBeanActions.delete(b.id)}">
+                                                <f:ajax execute="@form" render="booksTable @form"></f:ajax>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="pt-4 bottom-0 mb-4 mt-auto">
+        <div class="w-full px-6 mx-auto">
+            <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
+                <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-full lg:flex-none">
+                    <div class="leading-normal text-center text-sm text-gray-800 lg:text-left">
+                        mohammedhossyn © EME.JAVA
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="modal fixed justify-center items-center hidden left-0 right-0 top-0 bottom-0 z-990">
+        <div class="modal_box fixed p-4 rounded-3.5xl flex bg-white justify-center items-center text-lg w-9/10 h-90">
+            <div class="overflow-auto w-full h-full mx-auto text-slate-500">
+                <div class="flex flex-wrap -mx-3 removable">
+                    <div class="w-full max-w-full px-3 mb-6 sm:w-full sm:flex-none xl:mb-0">
+                        <div class="relative z-20 flex flex-col min-w-0 break-words border-0 border-solid border-black-125 rounded-2xl bg-clip-border mb-4">
+                            <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
+                                <h6 class="mb-0 text-xl">New Book</h6>
+                            </div>
+                            <div class="flex-auto p-4">
+                                <div class="flex flex-nowrap -mx-3 removable">
+                                    <h:form enctype="multipart/form-data" id="editForm">
+                                        <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none md:w-1/2 xl:mb-0 lg:w-8/12 xl:w-full">
+                                            <div class="flex flex-col-res pl-0 mb-0 rounded-lg md:block">
+                                                <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-1/2-custom md:w-1/2 mr-6 ml-2">
+                                                    <div class="w-full min-h-6 mb-0.5 inline-block pl-0">
+                                                        <label for="editTitle"
+                                                               class=" block mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                            <i class="fad fa-heading text-lg mr-1"></i>Title:</label>
+                                                        <h:inputText id="editTitle" label="Title" value="#{editBook.title}"
+                                                                     styleClass="w-full p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8 ">
+                                                            <f:validateBean for="editTitle"/>
+                                                        </h:inputText>
+                                                        <h:message for="editTitle" styleClass="text-red-600 text-sm"/>
+                                                    </div>
+                                                </div>
+                                                <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-1/2-custom md:w-1/2 ml-2">
+                                                    <div class="w-full min-h-6 mb-0.5 inline-block pl-0">
+                                                        <label for="editName"
+                                                               class=" mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800 block">
+                                                            <i class="fad fa-signature text-lg mr-1"></i>Name:</label>
+                                                        <h:inputText id="editName" label="Name" value="#{editBook.name}"
+                                                                     styleClass="w-full p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8">
+                                                            <f:validateBean for="editName"/>
+                                                        </h:inputText>
+                                                        <h:message for="editName" styleClass="text-red-600 text-sm"/>
+                                                    </div>
+                                                </div>
+                                                <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-1/2-custom md:w-1/2 mr-6 ml-2">
+                                                    <div class="w-full min-h-6 mb-0.5 inline-block pl-0">
+                                                        <label for="editWriter"
+                                                               class="block mb-0  overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                            <i class="fad fa-pen-nib text-lg mr-1"></i>Writer:</label>
+                                                        <h:inputText id="editWriter" label="Writer" value="#{editBook.writer}"
+                                                                     styleClass="w-full p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8">
+                                                            <f:validateBean for="editWriter"/>
+                                                        </h:inputText>
+                                                        <h:message for="editWriter" styleClass="text-red-600 text-sm"/>
+                                                    </div>
+                                                </div>
+                                                <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-1/2-custom md:w-1/2 ml-2">
+                                                    <div class="w-full min-h-6 mb-0.5 inline-block pl-0">
+                                                        <label for="editGoogleLink"
+                                                               class=" block mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                            <i class="fa-brands fa-google text-lg mr-1"></i>Google Link:</label>
+                                                        <h:inputText id="editGoogleLink" label="Google Link" value="#{editBook.googleLink}"
+                                                                     styleClass="w-full p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8 ">
+                                                            <f:validateBean for="editGoogleLink"/>
+                                                        </h:inputText>
+                                                        <h:message for="editGoogleLink" styleClass="text-red-600 text-sm"/>
+                                                    </div>
+                                                </div>
+                                                <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-2/5 md:w-1/2 ml-2">
+                                                    <div class="min-h-6 mb-0.5 inline-block pl-0">
+                                                        <label for="editBookPicture"
+                                                               class="block mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                            <i class="fad fa-image text-lg mr-1"></i>Picture:</label>
+                                                        <h:inputFile id="editBookPicture" label="Book Picture" value="#{editBook.uploadedImage}"
+                                                                     styleClass="editMainInput hidden">
+                                                            <f:validateBean for="editBookPicture"/>
+                                                        </h:inputFile>
+                                                        <button type="button" id="editFakeInput"
+                                                                class="inline-block px-4 py-2 mb-0 text-center uppercase align-middle transition-all bg-gray-800 shadow-soft-2xl hover:bg-white hover:text-black rounded-lg text-white"
+                                                                style="margin-bottom: 5px">Select Image
+                                                        </button>
+                                                        <span id="editSelected_filename"
+                                                              class="bg-gray-50 p-2 rounded-1.8">No Selected Image</span>
+                                                        <h:message for="editBookPicture"
+                                                                   styleClass="text-red-600 text-sm"/>
+                                                        <h:inputText value="#{editBook.attachment.id}" rendered="false"></h:inputText>
+                                                    </div>
+                                                </div>
+                                                <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit lg:w-2/3 md:w-1/2 ml-2">
+                                                    <div class="min-h-6 mb-0.5 inline-block pl-0 w-full">
+                                                        <label for="editExplanation"
+                                                               class=" block mb-0 overflow-hidden font-normal cursor-pointer select-none text-sm text-ellipsis whitespace-nowrap text-gray-800">
+                                                            <i class="fad fa-exclamation text-lg mr-1"></i>Explanation:</label>
+                                                        <h:inputTextarea id="editExplanation" value="#{editBook.explanation}"
+                                                                         label="explanation"
+                                                                         styleClass="p-1 shadow-soft-sm hover:shadow-soft-2xl hover:bg-white/10 bg-gray-50 focus:outline-none focus:bg-white rounded-1.8 w-full h-19.5">
+                                                            <f:validateBean for="editExplanation"/>
+                                                        </h:inputTextarea>
+                                                        <h:message for="editExplanation" styleClass="text-red-600 text-sm"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="relative inline-block px-0 py-2 border-0 rounded-t-lg text-inherit w-1/2 ml-2 file-upload">
+                                                <div class="min-h-6 mb-0.5 inline-block pl-0 w-full">
+                                                    <h:commandButton
+                                                            styleClass="inline-block px-4 py-2 mb-0 text-center uppercase align-middle transition-all bg-gray-800 shadow-soft-2xl hover:bg-white hover:text-black rounded-lg text-white cursor-pointer"
+                                                            value="Edit" action="#{bookBeanActions.edit(editBook)}">
+                                                    </h:commandButton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h:outputScript library="js" name="fileInputButton.js"></h:outputScript>
+                                        <h:outputScript library="js" name="modal.js"></h:outputScript>
+                                        <h:outputScript library="js" name="all.js"></h:outputScript>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-full modal-close" style="background: rgba(66,66,66,0.3)"></div>
+    </div>
+    <h:outputScript library="js" name="ajax_jQuery_3.6.3.js"></h:outputScript>
+    <h:outputScript library="js" name="fileInputButton.js"></h:outputScript>
+    <h:outputScript library="js" name="modal.js"></h:outputScript>
+    <h:outputScript library="js" name="all.js"></h:outputScript>
+    <h:outputScript library="js" name="main.min.js"></h:outputScript>
+    <h:outputScript library="js" name="ui.js"></h:outputScript>
+</h:body>
+</html>

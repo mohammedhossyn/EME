@@ -36,6 +36,7 @@ public class ProjectService implements ServiceImpl<Project, Long>,Serializable {
 
     //-------PHYSICAL-REMOVE---------------------------------------------
     @Override
+    @Transactional
     public Project physicalRemove(Long id) throws Exception {
         Project project = entityManager.find(Project.class, id);
         entityManager.remove(project);

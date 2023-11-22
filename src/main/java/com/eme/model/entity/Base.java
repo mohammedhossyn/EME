@@ -22,10 +22,10 @@ public class Base {
     @JsonbProperty("وضعیت")
     private Status status;
 
-    @JsonbTransient
-    @Version
-    @Column(name = "b_version_id", length = 1)
-    private Long versionId;
+//    @JsonbTransient
+//    @Version
+//    @Column(name = "b_version_id", length = 1)
+//    private Long versionId;
 
     @Override
     public String toString() {

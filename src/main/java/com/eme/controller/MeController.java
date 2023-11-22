@@ -5,6 +5,7 @@ import com.eme.controller.validation.ObjectValidation;
 import com.eme.model.entity.Attachment;
 import com.eme.model.entity.Me;
 import com.eme.model.entity.enums.Status;
+import com.eme.model.entity.enums.Role;
 import com.eme.model.entity.enums.TransactionStatus;
 import com.eme.model.service.MeService;
 import jakarta.enterprise.context.RequestScoped;
@@ -19,9 +20,6 @@ import java.util.Map;
 public class MeController {
 
     @Inject
-    private Me me;
-
-    @Inject
     private MeService meService;
 
     @Inject
@@ -30,8 +28,8 @@ public class MeController {
     @Inject
     private ExceptionWrapper exceptionWrapper;
 
-    private Map<TransactionStatus, Object> result;
-    private Map<String, String> errors;
+    private Map<TransactionStatus, Object> result = new HashMap<>();
+    private Map<String, String> errors = new HashMap<>();
 
     //-------INSERT------------------------------------------------------
     public Map<TransactionStatus, Object> save(
@@ -43,61 +41,16 @@ public class MeController {
             String telegram,
             String linkedin,
             String instagram,
+            Role role,
+            String birthday,
+            String jobPosition,
+            Attachment attachment,
             String shortAboutMeContent,
-            String completeAboutMeContent,
-            Attachment attachment
-    ){
+            String completeAboutMeContent
+    ) {
         result.clear();
         errors.clear();
-
-        //  ---------CREATE-OBJECT-----------------
-        me = Me.builder().firstName(firstName)
-                .lastName(lastName)
-                .phone(phone)
-                .email(email)
-                .github(github)
-                .telegram(telegram)
-                .linkedin(linkedin)
-                .instagram(instagram)
-                .shortAboutMeContent(shortAboutMeContent)
-                .completeAboutMeContent(completeAboutMeContent)
-                .attachment(attachment).build();
-
-        //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(me);
-        try {
-            if(errors.isEmpty()){
-                result.put(TransactionStatus.Done, meService.save(me));
-            }else{
-                result.put(TransactionStatus.Error, errors);
-            }
-        }catch(Exception e){
-            result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
-        }return result;
-    }
-
-    //-------UPDATE------------------------------------------------------
-    public Map<TransactionStatus, Object> edit(
-            Long id,
-            Status status,
-            String firstName,
-            String lastName,
-            String phone,
-            String email,
-            String github,
-            String telegram,
-            String linkedin,
-            String instagram,
-            String shortAboutMeContent,
-            String completeAboutMeContent,
-            Attachment attachment
-    ){
-        result.clear();
-        errors.clear();
-
-        //  ---------CREATE-OBJECT-----------------
-        me = Me.builder().id(id)
-                .status(status)
+        Me me = Me.builder()
                 .firstName(firstName)
                 .lastName(lastName)
                 .phone(phone)
@@ -106,61 +59,122 @@ public class MeController {
                 .telegram(telegram)
                 .linkedin(linkedin)
                 .instagram(instagram)
+                .role(role)
+                .birthday(birthday)
+                .jobPosition(jobPosition)
+                .attachment(attachment)
                 .shortAboutMeContent(shortAboutMeContent)
                 .completeAboutMeContent(completeAboutMeContent)
-                .attachment(attachment).build();
+                .build();
 
         //  ---------VALIDATING-DATA---------------
         errors = objectValidation.doValidation(me);
         try {
-            if(errors.isEmpty()){
+            if (errors.isEmpty()) {
                 result.put(TransactionStatus.Done, meService.save(me));
-            }else{
+            } else {
                 result.put(TransactionStatus.Error, errors);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
-        }return result;
+        }
+        return result;
+    }
+
+    //-------UPDATE------------------------------------------------------
+    public Map<TransactionStatus, Object> edit(
+            Long id,
+            String firstName,
+            String lastName,
+            String phone,
+            String email,
+            String github,
+            String telegram,
+            String linkedin,
+            String instagram,
+            String birthday,
+            String jobPosition,
+            Attachment attachment,
+            String shortAboutMeContent,
+            String completeAboutMeContent
+    ) {
+        result.clear();
+        errors.clear();
+        Me me = Me.builder()
+                .status(Status.Active)
+                .id(id)
+                .firstName(firstName)
+                .lastName(lastName)
+                .phone(phone)
+                .email(email)
+                .github(github)
+                .telegram(telegram)
+                .linkedin(linkedin)
+                .instagram(instagram)
+                .role(Role.ME)
+                .birthday(birthday)
+                .jobPosition(jobPosition)
+                .attachment(attachment)
+                .shortAboutMeContent(shortAboutMeContent)
+                .completeAboutMeContent(completeAboutMeContent)
+                .build();
+
+        //  ---------VALIDATING-DATA---------------
+        errors = objectValidation.doValidation(me);
+        try {
+            if (errors.isEmpty()) {
+                result.put(TransactionStatus.Done, meService.edit(me));
+            } else {
+                result.put(TransactionStatus.Error, errors);
+            }
+        } catch (Exception e) {
+            result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
+        }
+        return result;
     }
 
     //-------PHYSICAL-REMOVE---------------------------------------------
-    public Map<TransactionStatus, Object> physicalRemove(Long id){
+    public Map<TransactionStatus, Object> physicalRemove(Long id) {
         result.clear();
         try {
             result.put(TransactionStatus.Done, meService.physicalRemove(id));
-        }catch(Exception e){
+        } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
-        }return result;
+        }
+        return result;
     }
 
     //-------LOGICAL-REMOVE----------------------------------------------
-    public Map<TransactionStatus, Object> logicalRemove(Long id){
+    public Map<TransactionStatus, Object> logicalRemove(Long id) {
         result.clear();
         try {
             result.put(TransactionStatus.Done, meService.physicalRemove(id));
-        }catch(Exception e){
+        } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
-        }return result;
+        }
+        return result;
     }
 
     //------SELECT-ALL---------------------------------------------------
-    public Map<TransactionStatus, Object> findAll(){
+    public Map<TransactionStatus, Object> findAll() {
         result.clear();
         try {
             result.put(TransactionStatus.Done, meService.findAll());
-        }catch(Exception e){
+        } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
-        }return result;
+        }
+        return result;
     }
 
     //------SELECT-BY-ID-------------------------------------------------
-    public Map<TransactionStatus, Object> findById(Long id){
+    public Map<TransactionStatus, Object> findById(Long id) {
         result.clear();
         try {
             result.put(TransactionStatus.Done, meService.findById(id));
-        }catch(Exception e){
+        } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
-        }return result;
+        }
+        return result;
     }
 
 }

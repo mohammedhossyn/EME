@@ -44,12 +44,12 @@
   </div>
   <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-left sm:w-auto">
     <div class="w-full container mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-      <a href="/main" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Main</a>
+      <a href="/mainPage" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Main</a>
       <a href="/projects" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let's See My
         Projects</a>
-      <a href="/aboutME" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let ME Introduce
+      <a href="/aboutMe" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2">Let ME Introduce
         MYSELF</a>
-      <a href="/callME" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2 selected">Let ME Know you</a>
+      <a href="/callMe" class="hover:bg-gray-800 hover:text-white rounded py-2 px-4 mx-2 selected">Let ME Know you</a>
     </div>
   </div>
 </nav>
@@ -59,8 +59,8 @@
     <article class="my-4 mx-4 items-center">
       <!-- Article Image -->
       <div class="bg-white p-6 flex flex-col justify-self-center items-center">
-        <i class="fa fa-phone fa-3x"></i><a href="tel:${me.phone}" class="px-3 py-2 bg-green-500 text-white font-bold text-sm rounded colorize my-3">${me.phone}</a>
-        <i class="fa fa-mailbox fa-4x"></i><a href="mailto:${me.email}" class="px-3 py-2 bg-blue-500 text-white font-bold text-sm rounded colorize mb-3">${me.email}</a>
+        <i class="fa-duotone fa-phone fa-3x" style="--fa-primary-color: #000000; --fa-secondary-color: #d6d6d6;"></i><a href="tel:${sessionScope.me.phone}" class="px-3 py-2 bg-green-500 text-white font-bold text-sm rounded colorize my-3">${sessionScope.me.phone}</a>
+        <i class="fa-duotone fa-mailbox fa-4x" style="--fa-primary-color: #000000; --fa-secondary-color: #d6d6d6;"></i><a href="mailto:${sessionScope.me.email}" class="px-3 py-2 bg-blue-500 text-white font-bold text-sm rounded colorize mb-3">${sessionScope.me.email}</a>
         <p class="font-semibold mt-5 text-center">Github, Telegram, Linkedin and Instagram links in footer</p>
       </div>
     </article>
@@ -87,18 +87,18 @@
   </div>
   <div class="w-full container mx-auto flex flex-col items-center">
     <div class="flex  md:flex-row text-center md:text-left md:justify-between py-6">
-      <a href="${me.github}" class="px-3" target="_blank"><i
+      <a href="https://github.com/${sessionScope.me.github}" class="px-3" target="_blank"><i
               class="fa-brands fa-github fa-4x hover:text-gray-700"></i></a>
-      <a href="${me.telegram}" class="px-3" target="_blank"><i
+      <a href="https://t.me/${sessionScope.me.telegram}" class="px-3" target="_blank"><i
               class="fa-brands fa-telegram fa-4x hover:text-blue-400"></i></a>
-      <a href="${me.linkedin}" class="px-3" target="_blank"><i
+      <a href="https://linkedin.com/in/${sessionScope.me.linkedin}" class="px-3" target="_blank"><i
               class="fa-brands fa-linkedin fa-4x hover:text-blue-800"></i></a>
-      <a href="${me.instagram}" class="px-3" target="_blank"><i
+      <a href="https://instagram.com/${sessionScope.me.instagram}" class="px-3" target="_blank"><i
               class="fa-brands fa-instagram fa-4x instagram"></i></a>
     </div>
     <div class="uppercase pb-6">mohammedhossyn &copy; eme.java</div>
   </div>
 </footer>
-<script src="js.jsp"></script>
+<jsp:include page="js.jsp"></jsp:include>
 </body>
 </html>

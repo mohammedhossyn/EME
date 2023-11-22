@@ -1,9 +1,11 @@
 package com.eme.model.service;
 
+import com.eme.controller.session.FacesSessionMap;
 import com.eme.model.entity.Me;
 import com.eme.model.entity.enums.Status;
 import com.eme.model.service.impl.ServiceImpl;
 import jakarta.enterprise.context.*;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -12,6 +14,7 @@ import jakarta.transaction.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 @RequestScoped
 @Named
@@ -32,11 +35,13 @@ public class MeService implements ServiceImpl<Me, Long>, Serializable {
     @Override
     @Transactional
     public Me edit(Me me) throws Exception {
-        return entityManager.merge(me);
+        entityManager.merge(me);
+        return me;
     }
 
     //-------PHYSICAL-REMOVE---------------------------------------------
     @Override
+    @Transactional
     public Me physicalRemove(Long id) throws Exception {
         Me me = entityManager.find(Me.class, id);
         entityManager.remove(me);

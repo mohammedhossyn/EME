@@ -6,6 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="../resources/css/main.min.css"></jsp:include>
-<jsp:include page="../resources/css/all.css"></jsp:include>
-<jsp:include page="../resources/css/font.css"></jsp:include>
+<link rel="stylesheet" href="../resources/css/main.min.css">
+<link rel="stylesheet" href="../resources/css/all.css">
+<link rel="stylesheet" href="../resources/css/font.css">

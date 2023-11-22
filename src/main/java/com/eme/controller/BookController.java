@@ -20,9 +20,6 @@ import java.util.Map;
 public class BookController {
 
     @Inject
-    private Book book;
-
-    @Inject
     private BookService bookService;
 
     @Inject
@@ -31,8 +28,8 @@ public class BookController {
     @Inject
     private ExceptionWrapper exceptionWrapper;
 
-    private Map<TransactionStatus, Object> result;
-    private Map<String, String> errors;
+    private Map<TransactionStatus, Object> result = new HashMap<>();
+    private Map<String, String> errors = new HashMap<>();
 
     //-------INSERT------------------------------------------------------
     public Map<TransactionStatus, Object> save(
@@ -40,25 +37,30 @@ public class BookController {
             String name,
             String writer,
             String explanation,
+            String googleLink,
             Attachment attachment
     ) {
         result.clear();
         errors.clear();
 
-        //  ---------CREATE-OBJECT-----------------
-        book = Book.builder()
+        //  ---------VALIDATING-DATA---------------
+        errors = objectValidation.doValidation(Book.builder()
                 .title(title)
                 .name(name)
                 .writer(writer)
                 .explanation(explanation)
+                .googleLink(googleLink)
                 .attachment(attachment)
-                .build();
-
-        //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(book);
+                .build());
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, bookService.save(book));
+                result.put(TransactionStatus.Done, bookService.save(Book.builder()
+                        .title(title)
+                        .name(name)
+                        .writer(writer)
+                        .explanation(explanation)
+                        .attachment(attachment)
+                        .build()));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }
@@ -71,34 +73,39 @@ public class BookController {
     //-------UPDATE------------------------------------------------------
     public Map<TransactionStatus, Object> edit(
             Status status,
-            Long versionId,
             Long id,
             String title,
             String name,
             String writer,
             String explanation,
+            String googleLink,
             Attachment attachment
     ) {
         result.clear();
         errors.clear();
 
-        //  ---------CREATE-OBJECT-----------------
-        book = Book.builder()
+        //  ---------VALIDATING-DATA---------------
+        errors = objectValidation.doValidation(Book.builder()
                 .status(status)
-                .versionId(versionId)
                 .id(id)
                 .title(title)
                 .name(name)
                 .writer(writer)
                 .explanation(explanation)
+                .googleLink(googleLink)
                 .attachment(attachment)
-                .build();
-
-        //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(book);
+                .build());
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, bookService.save(book));
+                result.put(TransactionStatus.Done, bookService.edit(Book.builder()
+                        .status(status)
+                        .id(id)
+                        .title(title)
+                        .name(name)
+                        .writer(writer)
+                        .explanation(explanation)
+                        .attachment(attachment)
+                        .build()));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }
@@ -123,7 +130,7 @@ public class BookController {
     public Map<TransactionStatus, Object> logicalRemove(Long id) {
         result.clear();
         try {
-            result.put(TransactionStatus.Done, bookService.physicalRemove(id));
+            result.put(TransactionStatus.Done, bookService.logicalRemove(id));
         } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
         }
@@ -146,6 +153,17 @@ public class BookController {
         result.clear();
         try {
             result.put(TransactionStatus.Done, bookService.findById(id));
+        } catch (Exception e) {
+            result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
+        }
+        return result;
+    }
+
+    //------SELECT-ALL-ACTIVE---------------------------------------------
+    public Map<TransactionStatus, Object> findAllActive() {
+        result.clear();
+        try {
+            result.put(TransactionStatus.Done, bookService.findAllActive());
         } catch (Exception e) {
             result.put(TransactionStatus.Exception, exceptionWrapper.getMessage(e));
         }

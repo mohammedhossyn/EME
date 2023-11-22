@@ -20,9 +20,6 @@ import java.util.Map;
 public class ProjectController {
 
     @Inject
-    private Project project;
-
-    @Inject
     private ProjectService projectService;
 
     @Inject
@@ -31,8 +28,8 @@ public class ProjectController {
     @Inject
     private ExceptionWrapper exceptionWrapper;
 
-    private Map<TransactionStatus, Object> result;
-    private Map<String, String> errors;
+    private Map<TransactionStatus, Object> result = new HashMap<>();
+    private Map<String, String> errors = new HashMap<>();
 
     //-------INSERT------------------------------------------------------
     public Map<TransactionStatus, Object> save(
@@ -45,20 +42,23 @@ public class ProjectController {
         result.clear();
         errors.clear();
 
-        //  ---------CREATE-OBJECT-----------------
-        project = Project.builder()
+        //  ---------VALIDATING-DATA---------------
+        errors = objectValidation.doValidation( Project.builder()
                 .name(name)
                 .progress(progress)
                 .title(title)
                 .explanation(explanation)
                 .attachment(attachment)
-                .build();
-
-        //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(project);
+                .build());
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, projectService.save(project));
+                result.put(TransactionStatus.Done, projectService.save( Project.builder()
+                        .name(name)
+                        .progress(progress)
+                        .title(title)
+                        .explanation(explanation)
+                        .attachment(attachment)
+                        .build()));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }
@@ -71,7 +71,6 @@ public class ProjectController {
     //-------UPDATE------------------------------------------------------
     public Map<TransactionStatus, Object> edit(
             Status status,
-            Long versionId,
             Long id,
             String name,
             String progress,
@@ -82,23 +81,27 @@ public class ProjectController {
         result.clear();
         errors.clear();
 
-        //  ---------CREATE-OBJECT-----------------
-        project = Project.builder()
+        //  ---------VALIDATING-DATA---------------
+        errors = objectValidation.doValidation( Project.builder()
                 .status(status)
-                .versionId(versionId)
                 .id(id)
                 .name(name)
                 .progress(progress)
                 .title(title)
                 .explanation(explanation)
                 .attachment(attachment)
-                .build();
-
-        //  ---------VALIDATING-DATA---------------
-        errors = objectValidation.doValidation(project);
+                .build());
         try {
             if (errors.isEmpty()) {
-                result.put(TransactionStatus.Done, projectService.save(project));
+                result.put(TransactionStatus.Done, projectService.edit( Project.builder()
+                        .status(status)
+                        .id(id)
+                        .name(name)
+                        .progress(progress)
+                        .title(title)
+                        .explanation(explanation)
+                        .attachment(attachment)
+                        .build()));
             } else {
                 result.put(TransactionStatus.Error, errors);
             }

@@ -12,7 +12,7 @@ import jakarta.transaction.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
-@RequestScoped
+@ConversationScoped
 @Named
 public class AttachmentService implements ServiceImpl<Attachment, Long>,Serializable {
 
@@ -36,6 +36,7 @@ public class AttachmentService implements ServiceImpl<Attachment, Long>,Serializ
 
     //-------PHYSICAL-REMOVE---------------------------------------------
     @Override
+    @Transactional
     public Attachment physicalRemove(Long id) throws Exception {
         Attachment attachment = entityManager.find(Attachment.class, id);
         entityManager.remove(attachment);
@@ -75,4 +76,6 @@ public class AttachmentService implements ServiceImpl<Attachment, Long>,Serializ
     public Long getRecordCount() throws Exception {
         return null;
     }
+
+
 }

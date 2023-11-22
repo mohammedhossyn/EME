@@ -21,6 +21,8 @@ public class ExceptionWrapper {
                 return "IO Message: Input/Output Error\n" + exception.getMessage();
         }else if (exception instanceof ServletException) {
             return "Servlet Message: WebServlet Error\n" + exception.getMessage();
+        }else if (exception instanceof NullPointerException) {
+            return "Null Pointer Error\n" + exception.getMessage();
         }else {
         return "Not Added THIS Error Yet\n" + exception.getMessage();
         }

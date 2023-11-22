@@ -1,25 +1,37 @@
 package com.eme.model.engine;
 
+import com.eme.controller.MeController;
+import com.eme.controller.UserController;
 import com.eme.controller.message.ErrorMessages;
+import com.eme.model.entity.User;
+import com.eme.model.entity.enums.Status;
+import com.eme.model.entity.enums.TransactionStatus;
+import com.eme.model.service.MeService;
+import com.eme.model.service.UserService;
 import jakarta.inject.Inject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import static org.apache.commons.io.FilenameUtils.indexOfExtension;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 
 
+//        UserService userService = new UserService();
+//        userService.save(User.builder().username("mohammedhossyn").password("mh990713").status(Status.Active).build());
+
+//        UserController userController = new UserController();
+//        userController.save("mohammedhossyn", "mh99071");
+
 //        ServiceCreatorService.getService().create(
 //                "Project",
 //                "./src/main/java/com/eme/model/service");
 
 //                ControllerCreatorService.getService().create(
-//                        "com.eme.model.entity.Project",
-//                "project",
+//                        "com.eme.model.entity.Me",
+//                "me",
 //                "./src/main/java/com/eme/controller");
 
 //        System.out.println(Arrays.toString(Person.class.getDeclaredFields()));
